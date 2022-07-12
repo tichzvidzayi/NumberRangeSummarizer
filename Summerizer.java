@@ -1,37 +1,49 @@
-package numberrangesummarizer;
-
+//package numberrangesummarizer;
+// Commented out package name because the class are all in the same folder
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.TreeSet;
-import numberrangesummarizer.*;
 
 public class Summerizer implements NumberRangeSummarizer
 {
+/*Author : Tich Zvidzayi
+ * This class implements the NumberRangeSummarizer interface.
+ * The purpose of the Summerizer class is to output a summerised range output e.g
+ * Input : 1,4,5,6,9,10,11,20,23,24,25,36,37,39,46,57
+ * Output :  1, 4-6, 9-11, 20, 23-25, 36-37, 39, 46, 57
+ * 
+ */
 
-public Collection<Integer> collect(String inpt)
 
-{  
-   Collection<Integer> xs = new HashSet<>();
-   String[] col = inpt.split(",");
-   int n =0;
-     for (int i = 0; i < col.length; i++)
+  public Collection<Integer> collect(String input) 
+  {
+		Collection<Integer> col = new HashSet<>();
+    String[] nums = input.split(",");
+		
+		for (int i = 0; i < nums.length; i++)
      {
-       try{
-              n = Integer.parseInt(col[0]);
-                
-       }
-       catch(NumberFormatException ex){
-            throw new NumberFormatException("Could not convert input to an integer");
+			try 
+      {
 
-       }
+				col.add(Integer.parseInt(nums[i]));
+			} 
+      catch (NumberFormatException ex) 
+      {
+				throw new NumberFormatException("Could not parse some text as integers");
+			}
+		}
+      /*
+         Assumming that the set might not be sorted in ascending order.
+         The TreeSet automatically sorts the HashSet 'col' in ascending order.
+      */
+    Set<Integer> sortedSet = new TreeSet<Integer>(col);
 
-       xs.add(n);
-     }
-
-     return xs;
-
-}
+    return sortedSet;
+  
+	}
 
 public String summarizeCollection (Collection<Integer> inp)
 
@@ -41,8 +53,7 @@ public String summarizeCollection (Collection<Integer> inp)
   Boolean issequential =false;
 
   inp = new TreeSet<>(inp);
-  StringBuilder res = new StringBuilder("");
-
+  StringBuilder result = new StringBuilder("");
   Iterator<Integer> ite = inp.iterator();
 
    if( ite.hasNext() )
@@ -50,14 +61,16 @@ public String summarizeCollection (Collection<Integer> inp)
     previous =ite.next(); 
    }
    else
-       return res.toString();
+   {
+       return result.toString();
+   }
    
-res.append(previous);
+  result.append(previous);
 
 
-while (ite.hasNext())
+  while (ite.hasNext())
 
-{
+  {
    current = ite.next(); 
 
    if(current== previous + 1 )
@@ -70,10 +83,10 @@ while (ite.hasNext())
    {
           if (issequential)
         {
-          res.append("-").append(previous);
+          result.append("-").append(previous);
           issequential = false;
         }
-        res.append(", ").append(current);
+        result.append(", ").append(current);
 
    }
     previous = current;
@@ -82,21 +95,14 @@ while (ite.hasNext())
 
 if(issequential)
 {
-    res.append("-").append(previous);
+    result.append("-").append(previous);
 
 }
 
-return res.toString();
+return result.toString();
 
 }
 
-
-
-	public static void main(String[] args) {
-		Summerizer summarizer = new Summerizer();
-		Collection<Integer> inputs = summarizer.collect("1,3,6,7,8,12,13,14,15,21,22,23,24,31");
-		System.out.println(summarizer.summarizeCollection(inputs));
-	}
 
 
 }

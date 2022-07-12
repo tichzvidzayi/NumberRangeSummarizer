@@ -1,12 +1,11 @@
-
+//package numberrangesummarizer;
 
 import java.util.Collection;
 
 public class Main {
 	public static void main(String[] args) {
-	  //NumberSummarizer summarizer = new NumberSummarizer();
 		Summerizer summarizer = new Summerizer();
-		Collection<Integer> ints = summarizer.collect("7,8,12,13,14,15,21,22,23,24,31");
-		System.out.println(summarizer.summarizeCollection(ints));
+		Collection<Integer> col = summarizer.collect("1,4,5,6,9,10,11,20,23,24,25,36,37,39,46,57");
+		System.out.print(summarizer.summarizeCollection(col));
 	}
 }
