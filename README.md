@@ -8,7 +8,6 @@ Compile using :      javac  NumberRangeSummarizer    //compile the interface
                      javac Summarizer.java          // implement the interface
                      javac Main.java               //For manual testing
 
-
     Run           :   java Main 
 
 
