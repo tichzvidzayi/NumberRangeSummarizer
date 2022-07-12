@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Summerizer implements NumberRangeSummarizer
+public class Summarizer implements NumberRangeSummarizer
 {
 /*Author : Tich Zvidzayi
  * This class implements the NumberRangeSummarizer interface.
