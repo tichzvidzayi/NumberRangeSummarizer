@@ -28,7 +28,7 @@ public class Summerizer implements NumberRangeSummarizer
 			try 
       {
 
-				col.add(Integer.parseInt(nums[i]));
+				col.add(Integer.parseInt(nums[i].trim()));                       //Trims some extra spaces from input
 			} 
       catch (NumberFormatException ex) 
       {
