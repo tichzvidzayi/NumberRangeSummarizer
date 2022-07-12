@@ -12,7 +12,10 @@ However here is what I sought to achieve;
 4 - Empty or Null strings are supposed to fail.
 5 - The test should fail if the input is of type double or floating, bool. Only integers should be accepted.
 6 - The integer size should not exceed the 4 bytes limit (2,147,483,647 to 2,147,483,647)
+
   */
+
+  
 public class SummarizerTest {
 
 	@Test
