@@ -1,7 +1,7 @@
 //package numberrangesummarizer;
 // Commented out package name because the class are all in the same folder
 import java.util.Collection;
-import java.util.Collections;
+//import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -35,10 +35,12 @@ public class Summarizer implements NumberRangeSummarizer
 				throw new NumberFormatException("Could not parse some text as integers");
 			}
 		}
+
       /*
-         Assumming that the set might not be sorted in ascending order.
+         Assumming that the set might not be sorted and we are required to sort the list in ASCENDING order.
          The TreeSet automatically sorts the HashSet 'col' in ascending order.
       */
+
     Set<Integer> sortedSet = new TreeSet<Integer>(col);
 
     return sortedSet;
@@ -47,7 +49,7 @@ public class Summarizer implements NumberRangeSummarizer
 
 public String summarizeCollection (Collection<Integer> inp)
 
-{
+{ //Initiate variable
   int current =-1;
   int previous = -1;
   Boolean issequential =false;
@@ -56,19 +58,23 @@ public String summarizeCollection (Collection<Integer> inp)
   StringBuilder result = new StringBuilder("");
   Iterator<Integer> ite = inp.iterator();
 
-   if( ite.hasNext() )
+ /* Since we are looping sequential and we do not need to access elements using an array index
+      we can use an iterator data structure
+  */
+
+   if( ite.hasNext() )              //if not the last element
    {
     previous =ite.next(); 
    }
    else
    {
-       return result.toString();
+       return result.toString();    // return the stringbuilder as a string
    }
    
   result.append(previous);
 
 
-  while (ite.hasNext())
+  while (ite.hasNext())            //whilst the list has more elements keep looping
 
   {
    current = ite.next(); 
@@ -94,7 +100,7 @@ public String summarizeCollection (Collection<Integer> inp)
 }
 
 if(issequential)
-{
+{  // If sequential append a dash and previous
     result.append("-").append(previous);
 
 }
