@@ -1,46 +1,39 @@
-
 package numberrangesummarizer;
-
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeSet;
+import numberrangesummarizer.*;
 
-
-public class Summerizer implements NumberRangeSummerizer
-
+public class Summerizer implements NumberRangeSummarizer
 {
 
-
-
-@Override
 public Collection<Integer> collect(String inpt)
 
 {  
    Collection<Integer> xs = new HashSet<>();
-   String[] col = inpt.split(',');
-
-     for (int i = 0; i < col.Length; i++)
+   String[] col = inpt.split(",");
+   int n =0;
+     for (int i = 0; i < col.length; i++)
      {
        try{
-             int n = Integer.parseInt(col[0]);
+              n = Integer.parseInt(col[0]);
                 
        }
-       catch(Exception ex){
-            throw new Exception("Could not convert input to an integer");
+       catch(NumberFormatException ex){
+            throw new NumberFormatException("Could not convert input to an integer");
 
        }
 
-       xs.Add(n);
+       xs.add(n);
      }
 
      return xs;
 
 }
 
-@Override
-public String summerizeCollection (Collection<Integer> inp)
+public String summarizeCollection (Collection<Integer> inp)
 
 {
   int current =-1;
@@ -50,7 +43,7 @@ public String summerizeCollection (Collection<Integer> inp)
   inp = new TreeSet<>(inp);
   StringBuilder res = new StringBuilder("");
 
-  Iterator<Integer> ite = inpt.iterator();
+  Iterator<Integer> ite = inp.iterator();
 
    if( ite.hasNext() )
    {
@@ -89,7 +82,7 @@ while (ite.hasNext())
 
 if(issequential)
 {
-    res.append("-").append(prev);
+    res.append("-").append(previous);
 
 }
 
@@ -102,10 +95,8 @@ return res.toString();
 	public static void main(String[] args) {
 		Summerizer summarizer = new Summerizer();
 		Collection<Integer> inputs = summarizer.collect("1,3,6,7,8,12,13,14,15,21,22,23,24,31");
-		System.out.println(summarizer.summarizeCollection(input));
+		System.out.println(summarizer.summarizeCollection(inputs));
 	}
-
-
 
 
 }
